@@ -1,0 +1,44 @@
+# -------------------------
+# Compiled Java files
+# -------------------------
+*.class
+
+# -------------------------
+# Package Files
+# -------------------------
+*.jar
+*.war
+*.ear
+
+# -------------------------
+# IntelliJ IDEA
+# -------------------------
+# Ignore the project configuration directory created by IntelliJ IDEA.
+.idea/
+# Ignore module files
+*.iml
+*.iws
+
+# -------------------------
+# Build Directories
+# -------------------------
+# For IntelliJ IDEA
+/out/
+
+# For Maven builds
+target/
+
+# For Gradle builds
+.gradle/
+build/
+
+# -------------------------
+# Logs
+# -------------------------
+*.log
+
+# -------------------------
+# Operating System Files
+# -------------------------
+.DS_Store
+Thumbs.db
