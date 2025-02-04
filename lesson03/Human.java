@@ -68,7 +68,7 @@ public class Human {
     public void describePet()
     {
         String isSly= pet.getTrickLevel()>50 ? "very sly" : "almost not sly";
-        System.out.println("I have an "+pet.getSpecies()+" is "
+        System.out.println("I have a "+pet.getSpecies()+". It is "
                 +pet.getAge()+" years old, he is "+isSly);
     }
     @Override
