@@ -9,7 +9,23 @@ public class Main {
     Human genevieve=new Human("Genevieve","Scherbatsky",1945);
     Pet dog=new Pet("Bulldog","bd",6,66,new String[]{"eat","sleep","bark","drink"});
     Human robin=new Human("Robin","Scherbatsky",1980,90,dog,genevieve,scherbatskySr);
-    System.out.println(robin);
+    System.out.println("First Family:");
+    System.out.println(loretta);
+    System.out.println(jerome);
+    System.out.println(barney);
+    System.out.println("--------------------");
+    System.out.println("Second Family(with pet):");
+    System.out.println(scherbatskySr);
+    System.out.println(genevieve);
+    System.out.println(robin); //this uses toString method to print robin. Therefore, i did not use toString() method once more
+    System.out.println(dog);
+    robin.greetPet();
+    robin.describePet();
+    dog.eat();
+    dog.respond();
+    dog.foul();
+
+
 
     }
 }
