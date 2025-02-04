@@ -8,12 +8,19 @@ public class Pet {
 
     public Pet()
     {
-
+        this.species = "";
+        this.nickname = "";
+        this.age = -1;
+        this.trickLevel = -1;
+        this.habits = new String[]{"N/A"};
     }
     public Pet(String species, String nickname)
     {
         this.species = species;
         this.nickname = nickname;
+        this.age = -1;
+        this.trickLevel = -1;
+        this.habits = new String[]{"N/A"};
     }
     public Pet(String species, String nickname, int age, int trickLevel, String[] habits)
     {
@@ -40,10 +47,7 @@ public class Pet {
     {
         return trickLevel;
     }
-//    private String[] getHabits()
-//    {
-//        return habits;
-//    }
+
     public void eat()
     {
         System.out.println("I am eating");
