@@ -8,7 +8,13 @@ public class Main {
     Human scherbatskySr=new Human("Sr","Scherbatsky",1941);
     Human genevieve=new Human("Genevieve","Scherbatsky",1945);
     Pet dog=new Pet("Bulldog","bd",6,66,new String[]{"eat","sleep","bark","drink"});
-    Human robin=new Human("Robin","Scherbatsky",1980,90,dog,genevieve,scherbatskySr);
+    String[][] robinsSchedule={
+            {"Monday","Drawing"},
+            {"Wednesday","Playing badminton"},
+            {"Friday","Reading books"},
+            {"Saturday","Partying"}
+    };
+    Human robin=new Human("Robin","Scherbatsky",1980,90,dog,genevieve,scherbatskySr,robinsSchedule);
     System.out.println("First Family:");
     System.out.println(loretta);
     System.out.println(jerome);
