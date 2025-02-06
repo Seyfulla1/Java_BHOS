@@ -11,6 +11,7 @@ public class Human {
     private String[][] schedule;
     public Human()
     {
+
         this.name="Not";
         this.surname="Applicable";
         this.year=-1;
