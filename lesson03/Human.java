@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Human {
     private String name;
     private String surname;
@@ -71,6 +73,24 @@ public class Human {
         System.out.println("I have a "+pet.getSpecies()+". It is "
                 +pet.getAge()+" years old, he is "+isSly);
     }
+    public boolean feedPet(boolean isFeedingTime)
+    {
+
+        if(!isFeedingTime)
+        {
+            Random rand = new Random();
+            int randomNum = rand.nextInt(101);
+            if(pet.getTrickLevel()>randomNum)
+            {
+                isFeedingTime=true;
+            }
+        }
+        String output=isFeedingTime?"Hm... I will feed "+name+"'s "+pet.getName():"I think "+name+"'s "+pet.getName()+" is not hungry.";
+        System.out.println(output);
+        return isFeedingTime;
+
+    }
+
     @Override
     public String toString() {
         return "Human{name='"+name+"', surname='"+surname+"', year="+year+", iq="+iq+
