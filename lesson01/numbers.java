@@ -2,14 +2,22 @@ import java.util.Scanner;
 import java.util.Random;
 public class numbers {
     public static void main(String[] args) {
-        System.out.print("Enter your name: ");
+        Scanner sc = new Scanner(System.in);
         Random rand = new Random();
         int rand_num = rand.nextInt(101);
-        String name=new Scanner(System.in).nextLine();
+        System.out.print("Enter your name: ");
+        String name=sc.nextLine();
+
         System.out.println("Let the game begin!");
         while(true){
             System.out.print("Enter your guess: ");
-            int guess=new Scanner(System.in).nextInt();
+            if(!(sc.hasNextInt()))
+            {
+                sc.next();
+                continue;
+            }
+            int guess=sc.nextInt();
+
             if(guess==rand_num){
                 System.out.println("Congratulations, "+name+"!");
                 break;
