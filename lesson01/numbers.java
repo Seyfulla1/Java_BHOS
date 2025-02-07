@@ -12,11 +12,11 @@ public class numbers {
         System.out.println("Let the game begin!");
         while(true) {
             System.out.print("Enter your guess: ");
-            if (!(sc.hasNextInt())) {
-                sc.next();
+            String str_guess=sc.nextLine();
+            if (!isInt(str_guess)) {
                 continue;
             }
-            int guess = sc.nextInt();
+            int guess = Integer.parseInt(str_guess);
             nums[index++] = guess;
 
             if (guess == rand_num) {
@@ -35,7 +35,14 @@ public class numbers {
 
 
     }
-
+    public static boolean isInt(String str) {
+        try{
+            Integer.parseInt(str);
+            return true;
+        }catch(NumberFormatException e){
+            return false;
+        }
+    }
     public static void sortArray(int[] nums,int index) {
         for (int i = 0; i < index; i++) {
             for (int j = i + 1; j < index; j++) {
