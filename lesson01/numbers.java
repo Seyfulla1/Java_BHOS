@@ -7,27 +7,44 @@ public class numbers {
         int rand_num = rand.nextInt(101);
         System.out.print("Enter your name: ");
         String name=sc.nextLine();
-
+        int[] nums = new int[101];
+        int index=0;
         System.out.println("Let the game begin!");
-        while(true){
+        while(true) {
             System.out.print("Enter your guess: ");
-            if(!(sc.hasNextInt()))
-            {
+            if (!(sc.hasNextInt())) {
                 sc.next();
                 continue;
             }
-            int guess=sc.nextInt();
+            int guess = sc.nextInt();
+            nums[index++] = guess;
 
-            if(guess==rand_num){
-                System.out.println("Congratulations, "+name+"!");
+            if (guess == rand_num) {
+                System.out.println("Congratulations, " + name + "!");
                 break;
-            }
-            else{
-                System.out.println("Your number is too "+(guess>rand_num?"big":"small")+". Please try again.");
+            } else {
+                System.out.println("Your number is too " + (guess > rand_num ? "big" : "small") + ". Please try again.");
             }
 
         }
+        sortArray(nums, index);
+        System.out.print("Your numbers: ");
+        for (int i = 0; i < index; i++) {
+            System.out.print(nums[i] + " ");
+        }
 
 
+    }
+
+    public static void sortArray(int[] nums,int index) {
+        for (int i = 0; i < index; i++) {
+            for (int j = i + 1; j < index; j++) {
+                if (nums[i] < nums[j]) {
+                    int temp = nums[i];
+                    nums[i] = nums[j];
+                    nums[j] = temp;
+                }
+            }
+        }
     }
 }
