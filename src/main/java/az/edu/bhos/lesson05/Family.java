@@ -1,5 +1,6 @@
 package az.edu.bhos.lesson05;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Family {
     private Human mother;
@@ -38,6 +39,7 @@ public class Family {
     public void setPet(Pet pet) {
         this.pet = pet;
     }
+
     public void addChild(Human child) {
         Human[] newChildren = new Human[children.length + 1];
         for (int i = 0; i < children.length; i++) {
@@ -66,6 +68,29 @@ public class Family {
     }
     public int countFamily() {
         return children.length+2;
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if(that==null || that.getClass()!=this.getClass()){
+            return false;
+        }
+        Family thatFamily = (Family) that;
+        //I check only mother and father as they are the two main components of the family
+        //As we can add and remove children, I didn't include them in comparison
+        //However, if needed, Arrays.equals(children, thatFamily.children) can be used to check if the children are equal
+        return Objects.equals(mother, thatFamily.mother) &&
+                Objects.equals(father, thatFamily.father);
+    }
+    @Override
+    public int hashCode() {
+        int result=17;
+        result=31*result+mother.hashCode();
+        result=31*result+father.hashCode();
+        return result;
     }
     @Override
     public String toString() {
