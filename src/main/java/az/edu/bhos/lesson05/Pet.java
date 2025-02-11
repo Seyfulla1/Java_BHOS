@@ -1,6 +1,7 @@
 package az.edu.bhos.lesson05;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Pet {
     private String species;
@@ -10,8 +11,8 @@ public class Pet {
     private String[] habits;
 
     public Pet() {
-        this.species = "";
-        this.nickname = "";
+        this.species = "N/A";
+        this.nickname = "N/A";
         this.age = -1;
         this.trickLevel = -1;
         this.habits = new String[0];
@@ -58,6 +59,29 @@ public class Pet {
     }
     public void foul() {
         System.out.println("I need to cover it up");
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if(that==null || this.getClass()!=that.getClass()) {
+            return false;
+        }
+        Pet thatPet = (Pet)that;
+        return Objects.equals(species, thatPet.species) &&
+                Objects.equals(nickname, thatPet.nickname) &&
+                age==thatPet.age && trickLevel==thatPet.trickLevel;
+    }
+    @Override
+    public int hashCode() {
+        int result=17;
+        result = 31 * result + species.hashCode();
+        result = 31 * result + nickname.hashCode();
+        result = 31 * result + age;
+        result = 31 * result + trickLevel;
+        return result;
     }
     @Override
     public String toString() {
