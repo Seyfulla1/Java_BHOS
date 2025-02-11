@@ -37,6 +37,35 @@ public class Family {
     public void setPet(Pet pet) {
         this.pet = pet;
     }
+    public void addChild(Human child) {
+        Human[] newChildren = new Human[children.length + 1];
+        for (int i = 0; i < children.length; i++) {
+            newChildren[i] = children[i];
+        }
+        newChildren[children.length] = child;
+        children = newChildren;
+        child.setFamily(this);
+    }
+    public boolean deleteChild(int index) {
+        if (index < 0 || index >= children.length) {
+            return false;
+        }
+        Human[] newChildren = new Human[children.length - 1];
+        int newIndex = 0;
+        for (int i = 0; i < children.length; i++) {
+            if (i == index) {
+                continue;
+            }
+            newChildren[newIndex] = children[i];
+            newIndex++;
+        }
+        children[index].setFamily(null);
+        children = newChildren;
+        return true;
+    }
+    public int countFamily() {
+        return children.length+2;
+    }
     @Override
     public String toString() {
         return "Family{mother="+mother.getName()+" father="+father.getName()+" children="+ Arrays.toString(children)+" pet="+pet.toString()+"}";
