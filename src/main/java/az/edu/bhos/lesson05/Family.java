@@ -7,6 +7,7 @@ public class Family {
     private Human father;
     private Human[] children;
     private Pet pet;
+
     public Family(Human mother, Human father) {
         this.mother = mother;
         this.father = father;
@@ -15,6 +16,7 @@ public class Family {
         this.mother.setFamily(this);
         this.father.setFamily(this);
     }
+
     public Human getMother() {
         return mother;
     }
@@ -27,6 +29,7 @@ public class Family {
     public Pet getPet() {
         return pet;
     }
+
     public void setMother(Human mother) {
         this.mother = mother;
     }
@@ -49,20 +52,26 @@ public class Family {
         children = newChildren;
         child.setFamily(this);
     }
-    public boolean deleteChild(int index) {
-        if (index < 0 || index >= children.length) {
+    public boolean deleteChild(Human human) {
+        boolean found = false;
+
+        for(Human child : children) {
+            if(child.equals(human)) {
+                found = true;
+                break;
+            }
+        }
+        if(!found) {
             return false;
         }
         Human[] newChildren = new Human[children.length - 1];
-        int newIndex = 0;
-        for (int i = 0; i < children.length; i++) {
-            if (i == index) {
-                continue;
+        int index=0;
+        for (Human child : children) {
+            if (!child.equals(human)) {
+                newChildren[index] = child;
+                index++;
             }
-            newChildren[newIndex] = children[i];
-            newIndex++;
         }
-        children[index].setFamily(null);
         children = newChildren;
         return true;
     }
