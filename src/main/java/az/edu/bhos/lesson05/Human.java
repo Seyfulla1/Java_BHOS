@@ -1,6 +1,7 @@
 package az.edu.bhos.lesson05;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Random;
 
 public class Human {
@@ -26,21 +27,13 @@ public class Human {
         this.schedule=new String[0][0];
         this.family=null;
     }
-    public Human(String name, String surname, int year,Family family) {
-        this.name=name;
-        this.surname=surname;
-        this.year=year;
-        this.iq=-1;
-        this.schedule=new String[0][0];
-        this.family=family;
-    }
-    public Human(String name, String surname, int year, int iq, String[][] schedule, Family family) {
+    public Human(String name, String surname, int year, int iq, String[][] schedule) {
         this.name = name;
         this.surname = surname;
         this.year = year;
         this.iq = iq;
         this.schedule = schedule;
-        this.family = family;
+        this.family = null;
     }
     public String getName()
     {
@@ -95,9 +88,37 @@ public class Human {
     }
 
     @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if(that==null || this.getClass()!=that.getClass()){
+            return false;
+        }
+        Human thatHuman = (Human)that;
+        return Objects.equals(name, thatHuman.name) &&
+                Objects.equals(surname, thatHuman.surname) &&
+                year==thatHuman.year && iq==thatHuman.iq;
+
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result=17;
+        result=31*result+Objects.hashCode(name);
+        result=31*result+Objects.hashCode(surname);
+        result=31*result+year;
+        result=31*result+iq;
+        return result;
+        //I could've used Objects.hash(name,surname,year,iq), but the manual method was more fun :)
+
+    }
+    @Override
     public String toString() {
         return "Human{name='"+name+"', surname='"+surname+"', year="+year+", iq="+iq+
-                "schedule="+Arrays.deepToString(schedule)+"}";
+                ", schedule="+Arrays.deepToString(schedule)+"}";
     }
+
 
 }
