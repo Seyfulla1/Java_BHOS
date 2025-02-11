@@ -10,6 +10,7 @@ public class Family {
         this.mother = mother;
         this.father = father;
         this.children = new Human[0];
+        this.pet = new Pet();
         this.mother.setFamily(this);
         this.father.setFamily(this);
     }
@@ -68,6 +69,6 @@ public class Family {
     }
     @Override
     public String toString() {
-        return "Family{mother="+mother.getName()+" father="+father.getName()+" children="+ Arrays.toString(children)+" pet="+pet.toString()+"}";
+        return "Family{\nmother="+mother.toString()+"\nfather="+father.toString()+"\nchildren="+ Arrays.toString(children)+"\npet="+pet.toString()+"\n}";
     }
 }
