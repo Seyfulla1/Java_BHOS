@@ -7,53 +7,39 @@ public class Human {
     private String surname;
     private int year;
     private int iq;
-    private Pet pet;
-    private Human mother;
-    private Human father;
     private String[][] schedule;
+    private Family family;
     public Human() {
         this.name="Not";
         this.surname="Applicable";
         this.year=-1;
         this.iq=-1;
-        this.pet=null;
-        this.mother=null;
-        this.father=null;
-        this.schedule=new String[][]{{"N/A","N/A"}};
+        this.schedule=new String[0][0];
+        this.family=null;
     }
     public Human(String name, String surname, int year) {
         this.name=name;
         this.surname=surname;
         this.year=year;
         this.iq=-1;
-        this.pet=new Pet();
-        this.mother=new Human();
-        this.father=new Human();
-        this.schedule=new String[][]{{"N/A","N/A"}};
+        this.schedule=new String[0][0];
+        this.family=null;
     }
-    public Human(String name, String surname, int year, Human mother, Human father) {
+    public Human(String name, String surname, int year,Family family) {
         this.name=name;
         this.surname=surname;
         this.year=year;
-        this.mother=mother;
-        this.father=father;
         this.iq=-1;
-        this.pet=new Pet();
-        this.schedule=new String[][]{{"N/A","N/A"}};
-
-
+        this.schedule=new String[0][0];
+        this.family=family;
     }
-    public Human(String name, String surname, int year, int iq, Pet pet, Human mother, Human father, String[][] schedule) {
+    public Human(String name, String surname, int year, int iq, String[][] schedule, Family family) {
         this.name = name;
         this.surname = surname;
         this.year = year;
         this.iq = iq;
-        this.pet = pet;
-        this.mother = mother;
-        this.father = father;
         this.schedule = schedule;
-
-
+        this.family = family;
     }
     public String getName()
     {
@@ -71,43 +57,23 @@ public class Human {
     {
         return iq;
     }
-    public Pet getPet()
-    {
-        return pet;
-    }
-    public Human getMother()
-    {
-        return mother;
-    }
-    public Human getFather()
-    {
-        return father;
-    }
     public String[][] getSchedule() { return schedule;}
-    public void setName(String name) {
-        this.name = name;
-    }
+    public Family getFamily() { return family;}
+    public void setName(String name) {this.name = name;}
     public void setSurname(String surname) {this.surname = surname;}
     public void setYear(int year) {this.year = year;}
     public void setIq(int iq) {this.iq = iq;}
-    public void setPet(Pet pet) {this.pet = pet;}
-    public void setMother(Human mother) {this.mother = mother;}
-    public void setFather(Human father) {this.father = father;}
     public void setSchedule(String[][] schedule) {this.schedule = schedule;}
+    public void setFamily(Family family) {this.family = family;}
 
-
-
-
-
-
-
-    public void greetPet() {
-        System.out.println("Hello, " + pet.getNickName());
+    public void greetPet()
+    {
+        System.out.println("Hello, " + family.getPet().getNickName());
     }
     public void describePet() {
-        String isSly= pet.getTrickLevel()>50 ? "very sly" : "almost not sly";
-        System.out.println("I have a "+pet.getSpecies()+". It is "
-                +pet.getAge()+" years old, he is "+isSly);
+        String isSly= family.getPet().getTrickLevel()>50 ? "very sly" : "almost not sly";
+        System.out.println("I have a "+family.getPet().getSpecies()+". It is "
+                +family.getPet().getAge()+" years old, he is "+isSly);
     }
     public boolean feedPet(boolean isFeedingTime) {
 
@@ -115,13 +81,13 @@ public class Human {
         {
             Random rand = new Random();
             int randomNum = rand.nextInt(101);
-            if(pet.getTrickLevel()>randomNum)
+            if(family.getPet().getTrickLevel()>randomNum)
             {
                 isFeedingTime=true;
             }
 
         }
-        String output=isFeedingTime?"Hm... I will feed "+name+"'s "+pet.getNickName():"I think "+name+"'s "+pet.getNickName()+" is not hungry.";
+        String output=isFeedingTime?"Hm... I will feed "+name+"'s "+family.getPet().getNickName():"I think "+name+"'s "+family.getPet().getNickName()+" is not hungry.";
         System.out.println(output);
         return isFeedingTime;
 
@@ -130,7 +96,7 @@ public class Human {
     @Override
     public String toString() {
         return "Human{name='"+name+"', surname='"+surname+"', year="+year+", iq="+iq+
-                ", mother="+mother.getName()+" "+mother.getSurname()+", father="+father.getName()+" "+father.getSurname()+", pet="+pet.toString()+'}';
+                ", mother="+family.getMother().getName()+" "+family.getMother().getSurname()+", father="+family.getFather().getName()+" "+family.getFather().getSurname()+", pet="+family.getPet().toString()+'}';
     }
 
 }
