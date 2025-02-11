@@ -1,5 +1,6 @@
 package az.edu.bhos.lesson05;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Human {
@@ -96,7 +97,7 @@ public class Human {
     @Override
     public String toString() {
         return "Human{name='"+name+"', surname='"+surname+"', year="+year+", iq="+iq+
-                ", mother="+family.getMother().getName()+" "+family.getMother().getSurname()+", father="+family.getFather().getName()+" "+family.getFather().getSurname()+", pet="+family.getPet().toString()+'}';
+                "schedule="+Arrays.deepToString(schedule)+"}";
     }
 
 }
