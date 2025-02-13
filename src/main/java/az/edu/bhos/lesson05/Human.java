@@ -11,6 +11,14 @@ public class Human {
     private int iq;
     private String[][] schedule;
     private Family family;
+
+    static{
+        System.out.println("Human class is loaded.");
+    }
+    {
+        System.out.println("A new Human object is created.");
+    }
+
     public Human() {
         this.name="Not";
         this.surname="Applicable";
@@ -35,6 +43,7 @@ public class Human {
         this.schedule = schedule;
         this.family = null;
     }
+
     public String getName()
     {
         return name;
@@ -53,6 +62,7 @@ public class Human {
     }
     public String[][] getSchedule() { return schedule;}
     public Family getFamily() { return family;}
+
     public void setName(String name) {this.name = name;}
     public void setSurname(String surname) {this.surname = surname;}
     public void setYear(int year) {this.year = year;}
@@ -99,10 +109,7 @@ public class Human {
         return Objects.equals(name, thatHuman.name) &&
                 Objects.equals(surname, thatHuman.surname) &&
                 year==thatHuman.year && iq==thatHuman.iq;
-
-
     }
-
     @Override
     public int hashCode() {
         int result=17;
@@ -112,7 +119,6 @@ public class Human {
         result=31*result+iq;
         return result;
         //I could've used Objects.hash(name,surname,year,iq), but the manual method was more fun :)
-
     }
     @Override
     public String toString() {

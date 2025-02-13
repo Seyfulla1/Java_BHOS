@@ -10,6 +10,13 @@ public class Pet {
     private int trickLevel;
     private String[] habits;
 
+    static{
+        System.out.println("Pet class is loaded.");
+    }
+    {
+        System.out.println("A new Pet object is created.");
+    }
+
     public Pet() {
         this.species = "N/A";
         this.nickname = "N/A";
@@ -32,6 +39,7 @@ public class Pet {
         this.habits = habits;
 
     }
+
     public String getSpecies() {
         return species;
     }
@@ -45,11 +53,13 @@ public class Pet {
         return trickLevel;
     }
     private String[] getHabits(){return habits;}
+
     private void setSpecies(String species){this.species = species;}
     private void setNickname(String nickname){this.nickname = nickname;}
     private void setAge(int age){this.age = age;}
     private void setTrickLevel(int trickLevel){this.trickLevel = trickLevel;}
     private void setHabits(String[] habits){this.habits = habits;}
+
     public void eat() {
         System.out.println("I am eating");
     }
@@ -85,7 +95,9 @@ public class Pet {
     }
     @Override
     public String toString() {
-        return species+"{nickname='" + nickname +"', age="+age+", trickLevel="+trickLevel+", habits="+ Arrays.toString(habits)+"}";
+        return species+"{nickname='" + nickname +"', age="+age+
+                ", trickLevel="+trickLevel+
+                ", habits="+ Arrays.toString(habits)+"}";
     }
 
 

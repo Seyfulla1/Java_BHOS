@@ -8,6 +8,12 @@ public class Family {
     private Human[] children;
     private Pet pet;
 
+    static{
+        System.out.println("Family class is loaded.");
+    }
+    {
+        System.out.println("A new Family object is created.");
+    }
     public Family(Human mother, Human father) {
         this.mother = mother;
         this.father = father;
