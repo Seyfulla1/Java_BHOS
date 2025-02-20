@@ -78,6 +78,7 @@ public class Family {
                 index++;
             }
         }
+        human.setFamily(null);
         children = newChildren;
         return true;
     }
