@@ -3,8 +3,15 @@ package az.edu.bhos.lesson07;
 import java.util.Arrays;
 import java.util.Objects;
 
+enum Species {
+    DOG,
+    CAT,
+    FISH,
+    NO_SPECIES;
+
+}
 public class Pet {
-    private String species;
+    private Species species;
     private String nickname;
     private int age;
     private int trickLevel;
@@ -18,20 +25,20 @@ public class Pet {
     }
 
     public Pet() {
-        this.species = "N/A";
+        this.species = Species.NO_SPECIES;
         this.nickname = "N/A";
         this.age = -1;
         this.trickLevel = -1;
         this.habits = new String[0];
     }
     public Pet(String species, String nickname) {
-        this.species = species;
+        this.species = Species.NO_SPECIES;
         this.nickname = nickname;
         this.age = -1;
         this.trickLevel = -1;
         this.habits = new String[0];
     }
-    public Pet(String species, String nickname, int age, int trickLevel, String[] habits) {
+    public Pet(Species species, String nickname, int age, int trickLevel, String[] habits) {
         this.species = species;
         this.nickname = nickname;
         this.age = age;
@@ -40,7 +47,7 @@ public class Pet {
 
     }
 
-    public String getSpecies() {
+    public Species getSpecies() {
         return species;
     }
     public String getNickName() {
@@ -54,7 +61,7 @@ public class Pet {
     }
     private String[] getHabits(){return habits;}
 
-    public void setSpecies(String species){this.species = species;}
+    public void setSpecies(Species species){this.species = species;}
     public void setNickname(String nickname){this.nickname = nickname;}
     public void setAge(int age){this.age = age;}
     public void setTrickLevel(int trickLevel){this.trickLevel = trickLevel;}
