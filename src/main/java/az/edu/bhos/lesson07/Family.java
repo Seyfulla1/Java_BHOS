@@ -113,4 +113,11 @@ public class Family {
     public String toString() {
         return "Family{\nmother="+mother.toString()+"\nfather="+father.toString()+"\nchildren="+ Arrays.toString(children)+"\npet="+pet.toString()+"\n}";
     }
+    //even though it underlines in red that finalize() is deprecated, I still used it as it is required in the task.
+    //and it seems it works as it outputs the message.
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("Human object is removed.");
+        //super.finalize(); since it is empty, there is no point in calling it
+    }
 }
