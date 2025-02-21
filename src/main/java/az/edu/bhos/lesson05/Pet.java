@@ -52,13 +52,13 @@ public class Pet {
     public int getTrickLevel() {
         return trickLevel;
     }
-    private String[] getHabits(){return habits;}
+    public String[] getHabits(){return habits;}
 
-    private void setSpecies(String species){this.species = species;}
-    private void setNickname(String nickname){this.nickname = nickname;}
-    private void setAge(int age){this.age = age;}
-    private void setTrickLevel(int trickLevel){this.trickLevel = trickLevel;}
-    private void setHabits(String[] habits){this.habits = habits;}
+    public void setSpecies(String species){this.species = species;}
+    public void setNickname(String nickname){this.nickname = nickname;}
+    public void setAge(int age){this.age = age;}
+    public void setTrickLevel(int trickLevel){this.trickLevel = trickLevel;}
+    public void setHabits(String[] habits){this.habits = habits;}
 
     public void eat() {
         System.out.println("I am eating");
