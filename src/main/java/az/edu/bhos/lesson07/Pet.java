@@ -99,7 +99,10 @@ public class Pet {
                 ", trickLevel="+trickLevel+
                 ", habits="+ Arrays.toString(habits)+"}";
     }
-
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("Human object is removed.");
+    }
 
 
 

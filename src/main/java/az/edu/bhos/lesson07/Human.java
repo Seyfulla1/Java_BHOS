@@ -125,6 +125,10 @@ public class Human {
         return "Human{name='"+name+"', surname='"+surname+"', year="+year+", iq="+iq+
                 ", schedule="+Arrays.deepToString(schedule)+"}";
     }
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("Human object is removed.");
+    }
 
 
 }
