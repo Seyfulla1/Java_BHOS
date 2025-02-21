@@ -23,6 +23,16 @@ public class Family {
         this.mother.setFamily(this);
         this.father.setFamily(this);
     }
+    public Family(Human mother,Human father, Pet pet)
+    {
+        this.mother=mother;
+        this.father=father;
+        this.children=new Human[0];
+        this.pet=pet;
+        this.mother.setFamily(this);
+        this.father.setFamily(this);
+    }
+
 
     public Human getMother() {
         return mother;
