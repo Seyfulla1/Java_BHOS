@@ -104,7 +104,8 @@ public class Pet {
     }
     @Override
     protected void finalize() throws Throwable {
-        System.out.println("Human object is removed.");
+        throw new UnsupportedOperationException("finalize() method is not supported in this class.");
+
     }
 
 
