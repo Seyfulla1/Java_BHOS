@@ -120,6 +120,21 @@ class FamilyTest {
         assertTrue(family.equals(family2) && family2.equals(family3) && family.equals(family3));
     }
     //I don't know how to check for consistency.
-    // may be checking assertEquals a few times, but it does not make sense to me.
+    // maybe checking assertEquals a few times, but it does not make sense to me.
 
+    @Test
+    void hashCodesShouldBeEqualWhenObjectsAreEqual() {
+        Family family2=new Family(mother,father);
+        assertEquals(family.hashCode(), family2.hashCode());
+    }
+    @Test
+    void hashCodeValueMayOnlyChangeIfTheObjectChanges() {
+        int hashCode1=family.hashCode();
+        int hashCode2=family.hashCode();
+        assertEquals(hashCode1,hashCode2);
+        family.setMother(new Human("Better","Mother",2000));
+        int hashCode3=family.hashCode();
+        assertNotEquals(hashCode1,hashCode3); //but still they may be equal as there can be an occasional collision. this is the best test I can think of rn.
+
+    }
 }
