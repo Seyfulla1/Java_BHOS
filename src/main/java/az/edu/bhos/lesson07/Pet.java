@@ -3,13 +3,6 @@ package az.edu.bhos.lesson07;
 import java.util.Arrays;
 import java.util.Objects;
 
-enum Species {
-    DOG,
-    CAT,
-    FISH,
-    NO_SPECIES;
-
-}
 public class Pet {
     private Species species;
     private String nickname;
@@ -31,7 +24,7 @@ public class Pet {
         this.trickLevel = -1;
         this.habits = new String[0];
     }
-    public Pet(String species, String nickname) {
+    public Pet(Species species, String nickname) {
         this.species = Species.NO_SPECIES;
         this.nickname = nickname;
         this.age = -1;
@@ -102,9 +95,12 @@ public class Pet {
     }
     @Override
     public String toString() {
+        String canfly=species.canFly?"can fly":"can't fly";
+        String hasFur=species.hasFur?"has fur":"doesn't have fur";
         return species+"{nickname='" + nickname +"', age="+age+
                 ", trickLevel="+trickLevel+
-                ", habits="+ Arrays.toString(habits)+"}";
+                ", habits="+ Arrays.toString(habits)+
+                ", characteristics="+canfly+", has "+species.numberOfLegs+" legs, "+hasFur+"}";
     }
     @Override
     protected void finalize() throws Throwable {
