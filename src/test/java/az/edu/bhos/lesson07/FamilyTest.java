@@ -119,8 +119,19 @@ class FamilyTest {
         Family family3=new Family(mother,father);
         assertTrue(family.equals(family2) && family2.equals(family3) && family.equals(family3));
     }
-    //I don't know how to check for consistency.
-    // maybe checking assertEquals a few times, but it does not make sense to me.
+    @Test
+    void equalsShouldBeConsistent() {
+        Family family2=new Family(mother,father);
+        assertEquals(family, family2);
+        assertEquals(family, family2);
+        assertEquals(family, family2);
+        assertEquals(family, family2);
+        Family family3=new Family(new Human("a","b",1990),new Human("c","d",1995));
+        assertNotEquals(family, family3);
+        assertNotEquals(family, family3);
+        assertNotEquals(family, family3);
+        assertNotEquals(family, family3);
+    }
 
     @Test
     void hashCodesShouldBeEqualWhenObjectsAreEqual() {
