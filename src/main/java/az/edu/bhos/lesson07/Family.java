@@ -23,8 +23,7 @@ public class Family {
         this.mother.setFamily(this);
         this.father.setFamily(this);
     }
-    public Family(Human mother,Human father, Pet pet)
-    {
+    public Family(Human mother,Human father, Pet pet) {
         this.mother=mother;
         this.father=father;
         this.children=new Human[0];
@@ -90,6 +89,23 @@ public class Family {
             }
         }
         human.setFamily(null);
+        children = newChildren;
+        return true;
+    }
+    public boolean deleteChild(int index) {
+        if (index < 0 || index >= children.length) {
+            return false;
+        }
+        Human[] newChildren = new Human[children.length - 1];
+        int newIndex = 0;
+        for (int i = 0; i < children.length; i++) {
+            if (i == index) {
+                continue;
+            }
+            newChildren[newIndex] = children[i];
+            newIndex++;
+        }
+        children[index].setFamily(null);
         children = newChildren;
         return true;
     }
