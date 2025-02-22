@@ -142,10 +142,12 @@ class FamilyTest {
     void hashCodeValueMayOnlyChangeIfTheObjectChanges() {
         int hashCode1=family.hashCode();
         int hashCode2=family.hashCode();
-        assertEquals(hashCode1,hashCode2);
-        family.setMother(new Human("Better","Mother",2000));
         int hashCode3=family.hashCode();
-        assertNotEquals(hashCode1,hashCode3); //but still they may be equal as there can be an occasional collision. this is the best test I can think of rn.
+        assertEquals(hashCode1,hashCode2);
+        assertEquals(hashCode2,hashCode3);
+        family.setMother(new Human("Better","Mother",2000));
+        int hashCode4=family.hashCode();
+        assertNotEquals(hashCode1,hashCode4); //but still they may be equal as there can be an occasional collision. this is the best test I can think of rn.
 
     }
 }
