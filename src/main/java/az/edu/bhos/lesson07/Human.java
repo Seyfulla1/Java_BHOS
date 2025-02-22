@@ -4,15 +4,6 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
-enum DayOfWeek {
-    MONDAY,
-    TUESDAY,
-    WEDNESDAY,
-    THURSDAY,
-    FRIDAY,
-    SATURDAY,
-    SUNDAY;
-}
 public class Human {
     private String name;
     private String surname;
