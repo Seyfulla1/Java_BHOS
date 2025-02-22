@@ -103,6 +103,23 @@ class FamilyTest {
                 "Human{name='Child2', surname='Childov2', year=1997, iq=-1, schedule=[]}]\n" +
                 "pet=DOG{nickname='bd', age=6, trickLevel=66, habits=[eat, sleep, bark, drink]}\n" + "}";
         assertEquals(expected,family.toString());
-
     }
+    @Test
+    void equalsShouldBeReflexive() {
+        assertEquals(family, family);
+    }
+    @Test void equalsShouldBeSymmetric() {
+        Family family2=new Family(mother,father);
+        assertTrue(family.equals(family2) && family2.equals(family));
+        Family family3=new Family(new Human("a","b",1990),new Human("c","d",1995));
+        assertFalse(family.equals(family3) || family3.equals(family));
+    }
+    @Test void equalsShouldBeTransitive() {
+        Family family2=new Family(mother,father);
+        Family family3=new Family(mother,father);
+        assertTrue(family.equals(family2) && family2.equals(family3) && family.equals(family3));
+    }
+    //I don't know how to check for consistency.
+    // may be checking assertEquals a few times, but it does not make sense to me.
+
 }
