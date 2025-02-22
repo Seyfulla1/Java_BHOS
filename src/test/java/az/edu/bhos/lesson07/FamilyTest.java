@@ -40,7 +40,7 @@ class FamilyTest {
     }
 
     @Test
-    void testDeleteChild() {
+    void testDeleteChildHuman() {
         family.addChild(child1);
         family.addChild(child2);
         family.addChild(child3);
@@ -59,6 +59,25 @@ class FamilyTest {
         assertEquals(originalChildrenCount,family.getChildren().length);
 
         
+    }
+    @Test
+    void testDeleteChildIndex() {
+        family.addChild(child1);
+        family.addChild(child2);
+        family.addChild(child3);
+        int originalChildrenCount=family.getChildren().length;
+        //-----------------------------------
+        boolean result=family.deleteChild(1);
+        assertEquals(originalChildrenCount-1,family.getChildren().length);
+        assertEquals(family.getChildren()[0],child1);
+        assertEquals(family.getChildren()[1],child3);
+        assertNull(child2.getFamily());
+        assertTrue(result);
+        //-----------------------------------
+        originalChildrenCount=family.getChildren().length;
+        result= family.deleteChild(2);
+        assertEquals(originalChildrenCount,family.getChildren().length);
+        assertFalse(result);
     }
 
 
