@@ -14,20 +14,24 @@ public abstract class Phone {
         this.storage = storage;
         this.price = price;
     }
-    public void getModel() {
-        System.out.println("Model: " + model);
+    public String getModel() {
+        return model;
     }
-    public void getSeries() {
-        System.out.println("Series: " + series);
+    public String getSeries() {
+        return series;
     }
-    public void getColor() {
-        System.out.println("Color: " + color);
+    public String getColor() {
+        return color;
     }
-    public void getStorage() {
-        System.out.println("Storage: " + storage);
+    public int getStorage() {
+        return storage;
     }
-    public void getPrice() {
-        System.out.println("Price: " + price);
+    public double getPrice() {
+        return price;
+    }
+    public void addStorage(int extraStorage) {
+        this.storage += extraStorage;
+        System.out.println("Storage added successfully to your "+model+" "+series+". New storage is: "+storage);
     }
 
 
