@@ -8,21 +8,25 @@ public class PhoneApp {
         Samsung samsung_s21 = new Samsung("Galaxy", "S21", "White", 128, 899.99);
         Samsung samsung_s24 = new Samsung("Galaxy", "S24 Ultra", "Black", 256, 1250.5);
 
-        iphone16.getModel();
+        System.out.println(iphone16.getModel()+" "+iphone16.getSeries());
         iphone16.ringTone();
 
-        iphone14.getModel();
+        System.out.println(iphone14.getModel()+" "+iphone14.getSeries());
         iphone14.ringTone();
 
-        xiaomi_11.getModel();
+        System.out.println(xiaomi_11.getModel()+" "+xiaomi_11.getSeries());
         xiaomi_11.ringTone();
 
-        samsung_s21.getModel();
+        System.out.println(samsung_s21.getModel()+" "+samsung_s21.getSeries());
         samsung_s21.ringTone();
 
-        samsung_s24.getModel();
+        System.out.println(samsung_s24.getModel()+" "+samsung_s24.getSeries());
         samsung_s24.ringTone();
 
+        System.out.println("-----------------------------------------");
+        iphone16.addStorage(512);
+        iphone16.addStorage(512);
+        xiaomi_11.addStorage(2048);
 
     }
 }
