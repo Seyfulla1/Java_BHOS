@@ -8,19 +8,19 @@ public class PhoneApp {
         Samsung samsung_s21 = new Samsung("Galaxy", "S21", "White", 128, 899.99);
         Samsung samsung_s24 = new Samsung("Galaxy", "S24 Ultra", "Black", 256, 1250.5);
 
-        iphone16.printModel();
+        iphone16.getModel();
         iphone16.ringTone();
 
-        iphone14.printModel();
+        iphone14.getModel();
         iphone14.ringTone();
 
-        xiaomi_11.printModel();
+        xiaomi_11.getModel();
         xiaomi_11.ringTone();
 
-        samsung_s21.printModel();
+        samsung_s21.getModel();
         samsung_s21.ringTone();
 
-        samsung_s24.printModel();
+        samsung_s24.getModel();
         samsung_s24.ringTone();
 
 
