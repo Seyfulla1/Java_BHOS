@@ -23,6 +23,6 @@ public final class Woman extends Human {
     }
     public void makeUp()
     {
-        System.out.println("I'm making up however i want, because i'm strong and independent");
+        System.out.println("I'm doing my makeup however i want, because i'm strong and independent");
     }
 }
