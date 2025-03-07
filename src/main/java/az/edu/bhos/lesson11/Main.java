@@ -1,4 +1,4 @@
-package az.edu.bhos.lesson07;
+package az.edu.bhos.lesson11;
 
 
 public class Main {
@@ -32,11 +32,9 @@ public class Main {
         };
     Human robin=new Human("Robin","Scherbatsky",1980,90,robinSchedule);
     Human ted=new Human("Ted","Mosby",1978);
-    Pet dog=new Pet(Species.DOG,"bd",6,66,new String[]{"eat","sleep","bark","drink"});
     family2.addChild(robin);
     family2.addChild(ted);
     family2.addChild(barney);
-    family2.setPet(dog);
         System.out.println(family2);
         System.out.println("----------------------------");
         family2.deleteChild(new Human("Ted","Mosby",1978));
