@@ -4,14 +4,16 @@ package az.edu.bhos.lesson11;
 public class Main {
     public static void main(String[] args) {
 
-    Human loretta=new Human("Loretta","Stinson",1948);
-    Human jerome=new Human("Jerome","Whittaker",1940);
+    Woman loretta=new Woman("Loretta","Stinson",1948);
+    Man jerome=new Man("Jerome","Whittaker",1940);
     Family family1=new Family(loretta,jerome);
 
     //-------------------------------------------------------------------
 
-    Human genevieve=new Human("Genevieve","Scherbatsky",1945);
-    Human scherbatskySr=new Human("Sr","Scherbatsky",1941);
+    Woman genevieve=new Woman("Genevieve","Scherbatsky",1945);
+    Man scherbatskySr=new Man("Sr","Scherbatsky",1941);
+    genevieve.setIq(100);
+    scherbatskySr.setIq(70);
     Family family2=new Family(genevieve,scherbatskySr);
 
     //--------------------------------------------------------------------
@@ -21,7 +23,7 @@ public class Main {
                 {DayOfWeek.WEDNESDAY.name(), "drink more"},
                 {DayOfWeek.FRIDAY.name(), "party"},
         };
-        Human barney = new Human("Barney", "Stinson", 1975);
+        Man barney = new Man("Barney", "Stinson", 1975);
         barney.setSchedule(barneySchedule);
 
         String[][] robinSchedule = {
@@ -30,14 +32,15 @@ public class Main {
                 {DayOfWeek.FRIDAY.name(), "Reading books"},
                 {DayOfWeek.SATURDAY.name(), "Partying"}
         };
-    Human robin=new Human("Robin","Scherbatsky",1980,90,robinSchedule);
-    Human ted=new Human("Ted","Mosby",1978);
+    Woman robin=new Woman("Robin","Scherbatsky",1980,90,robinSchedule);
+    Man ted=new Man("Ted","Mosby",1978);
     family2.addChild(robin);
     family2.addChild(ted);
     family2.addChild(barney);
+    family2.bornChild();
         System.out.println(family2);
         System.out.println("----------------------------");
-        family2.deleteChild(new Human("Ted","Mosby",1978));
+        family2.deleteChild(new Man("Ted","Mosby",1978));
         System.out.println(family2);
 
 
