@@ -55,14 +55,14 @@ public abstract class Pet {
             return false;
         }
         Pet thatPet = (Pet)that;
-        return Objects.equals(species, thatPet.species) &&
+        return Objects.equals(getSpecies(), thatPet.getSpecies()) &&
                 Objects.equals(nickname, thatPet.nickname) &&
                 age==thatPet.age && trickLevel==thatPet.trickLevel;
     }
     @Override
     public int hashCode() {
         int result=17;
-        result = 31 * result + species.hashCode();
+        result = 31 * result + getSpecies().hashCode();
         result = 31 * result + nickname.hashCode();
         result = 31 * result + age;
         result = 31 * result + trickLevel;
@@ -70,12 +70,12 @@ public abstract class Pet {
     }
     @Override
     public String toString() {
-        String canfly=species.canFly?"can fly":"can't fly";
-        String hasFur=species.hasFur?"has fur":"doesn't have fur";
-        return species+"{nickname='" + nickname +"', age="+age+
+        String canfly=getSpecies().canFly?"can fly":"can't fly";
+        String hasFur=getSpecies().hasFur?"has fur":"doesn't have fur";
+        return getSpecies()+"{nickname='" + nickname +"', age="+age+
                 ", trickLevel="+trickLevel+
                 ", habits="+ Arrays.toString(habits)+
-                ", characteristics="+canfly+", has "+species.numberOfLegs+" legs, "+hasFur+"}";
+                ", characteristics="+canfly+", has "+getSpecies().numberOfLegs+" legs, "+hasFur+"}";
     }
     @Override
     protected void finalize() throws Throwable {
