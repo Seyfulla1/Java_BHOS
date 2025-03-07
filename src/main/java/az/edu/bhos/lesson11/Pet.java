@@ -16,24 +16,11 @@ public abstract class Pet {
         System.out.println("A new Pet object is created.");
     }
 
-    public Pet() {
-        this.nickname = "N/A";
-        this.age = -1;
-        this.trickLevel = -1;
-        this.habits = new String[0];
-    }
-    public Pet(String nickname) {
-        this.nickname = nickname;
-        this.age = -1;
-        this.trickLevel = -1;
-        this.habits = new String[0];
-    }
     public Pet(String nickname, int age, int trickLevel, String[] habits) {
         this.nickname = nickname;
         this.age = age;
         this.trickLevel = trickLevel;
         this.habits = habits;
-
     }
 
     public abstract Species getSpecies();
@@ -57,9 +44,7 @@ public abstract class Pet {
         System.out.println("I am eating");
     }
     public abstract void respond();
-    public void foul() {
-        System.out.println("I need to cover it up");
-    }
+
 
     @Override
     public boolean equals(Object that) {
