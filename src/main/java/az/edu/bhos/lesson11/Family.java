@@ -151,7 +151,6 @@ public class Family implements HumanCreator {
         int result=17;
         result=31*result+mother.hashCode();
         result=31*result+father.hashCode();
-        result=31*result+getClass().hashCode(); // getClass().getName().hashCode() this can be used, too. However, I think it is not necessary
         return result;
     }
     @Override
