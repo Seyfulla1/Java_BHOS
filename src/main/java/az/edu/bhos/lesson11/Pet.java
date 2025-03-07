@@ -34,7 +34,7 @@ public abstract class Pet {
     public int getTrickLevel() {
         return trickLevel;
     }
-    private String[] getHabits(){return habits;}
+    public String[] getHabits(){return habits;}
     public void setNickname(String nickname){this.nickname = nickname;}
     public void setAge(int age){this.age = age;}
     public void setTrickLevel(int trickLevel){this.trickLevel = trickLevel;}
