@@ -17,6 +17,7 @@ public class Human {
     }
     {
         System.out.println("A new Human object is created.");
+        this.family=null;
     }
 
     public Human() {
@@ -25,7 +26,7 @@ public class Human {
         this.year=-1;
         this.iq=-1;
         this.schedule=new String[0][0];
-        this.family=null;
+
     }
     public Human(String name, String surname, int year) {
         this.name=name;
@@ -33,7 +34,7 @@ public class Human {
         this.year=year;
         this.iq=-1;
         this.schedule=new String[0][0];
-        this.family=null;
+
     }
     public Human(String name, String surname, int year, int iq, String[][] schedule) {
         this.name = name;
@@ -41,7 +42,7 @@ public class Human {
         this.year = year;
         this.iq = iq;
         this.schedule = schedule;
-        this.family = null;
+
     }
 
     public String getName()
