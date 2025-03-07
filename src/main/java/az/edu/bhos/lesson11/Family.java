@@ -2,12 +2,15 @@ package az.edu.bhos.lesson11;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Random;
 
-public class Family {
+public class Family implements HumanCreator {
     private Human mother;
     private Human father;
     private Human[] children;
     private Pet pet;
+    private static String[] maleNames = {"Xankisi", "Balaeli", "Resad", "Aga", "Sarqon", "Isfendiyar", "Salmanasar", "Ebulfet", "Feriburz", "Mehemmed"};
+    private static String[] femaleNames = {"Gulbahar","Zuleyxa","Zerqelem","Qizbesti","Balaqiz","Sariqiz","Qaraqiz","Aqile","Nigar","Nehayet"};
 
     static{
         System.out.println("Family class is loaded.");
@@ -113,6 +116,22 @@ public class Family {
     }
 
     @Override
+    public Human bornChild() {
+        Random r=new Random();
+        boolean isMale=r.nextBoolean();
+        int randomNameIndex=r.nextInt(isMale?maleNames.length:femaleNames.length);
+        int iq=(father.getIq()+mother.getIq())/2;
+        int year=2025;
+        Human child=isMale?new Man(): new Woman();
+        child.setName(isMale?maleNames[randomNameIndex]:femaleNames[randomNameIndex]);
+        child.setSurname(father.getSurname());
+        child.setYear(year);
+        child.setIq(iq);
+        child.setFamily(this);
+        addChild(child);
+        return child;
+    }
+    @Override
     public boolean equals(Object that) {
         if (this == that) {
             return true;
@@ -132,6 +151,7 @@ public class Family {
         int result=17;
         result=31*result+mother.hashCode();
         result=31*result+father.hashCode();
+        result=31*result+getClass().hashCode(); // getClass().getName().hashCode() this can be used, too. However, I think it is not necessary
         return result;
     }
     @Override
