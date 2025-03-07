@@ -42,9 +42,9 @@ public class Main {
         family2.deleteChild(new Human("Ted","Mosby",1978));
         System.out.println(family2);
 
-        for (int i = 0; i < 10000000; i++) {
-            new Human("Ali", "Vali", 1945);
-        }
+//        for (int i = 0; i < 150000; i++) {
+//            new Human("Ali", "Vali", 1945);
+//        }
 
 
 
