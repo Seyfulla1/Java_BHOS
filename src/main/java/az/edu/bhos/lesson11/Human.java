@@ -64,6 +64,7 @@ public class Human {
     public String[][] getSchedule() { return schedule;}
     public Family getFamily() { return family;}
 
+
     public void setName(String name) {this.name = name;}
     public void setSurname(String surname) {this.surname = surname;}
     public void setYear(int year) {this.year = year;}
@@ -118,6 +119,7 @@ public class Human {
         result=31*result+Objects.hashCode(surname);
         result=31*result+year;
         result=31*result+iq;
+        result=31*result+getClass().hashCode(); // getClass().getName().hashCode() this can be used, too. However, I think it is not necessary
         return result;
         //I could've used Objects.hash(name,surname,year,iq), but the manual method was more fun :)
     }
