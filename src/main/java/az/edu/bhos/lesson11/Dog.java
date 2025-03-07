@@ -9,7 +9,7 @@ public class Dog extends Pet implements CanFoul{
     }
     @Override
     public void respond() {
-        System.out.println("Dog is barking");
+        System.out.println("Dog"+getNickName()+" is barking");
         // System.out.println("Hello, owner. I am - "+super.getNickName()+". I miss you!");
     }
     @Override public Species getSpecies() {

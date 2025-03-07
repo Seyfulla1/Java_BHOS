@@ -8,7 +8,7 @@ public class RoboCat extends Pet implements CanFoul{
     }
     @Override
     public void respond() {
-        System.out.println("RoboCat is meowing worse than DomesticCat");
+        System.out.println("RoboCat"+getNickName()+" is meowing worse than DomesticCat");
     }
     @Override public Species getSpecies() {
         return Species.ROBO_CAT;
