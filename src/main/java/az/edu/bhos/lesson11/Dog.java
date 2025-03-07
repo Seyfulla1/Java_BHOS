@@ -13,7 +13,7 @@ public class Dog extends Pet implements CanFoul{
         // System.out.println("Hello, owner. I am - "+super.getNickName()+". I miss you!");
     }
     @Override public Species getSpecies() {
-        return Species.DOG;
+        return species;
     }
 
     @Override

@@ -11,6 +11,6 @@ public class Fish extends Pet{
         System.out.println("Fish"+getNickName()+" cannot talk");
     }
     @Override public Species getSpecies() {
-        return Species.FISH;
+        return species;
     }
 }

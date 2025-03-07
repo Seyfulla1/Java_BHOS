@@ -11,7 +11,7 @@ public class DomesticCat extends Pet implements CanFoul{
         System.out.println("DomesticCat"+getNickName()+" is meowing");
     }
     @Override public Species getSpecies() {
-        return Species.DOMESTIC_CAT;
+        return species;
     }
     @Override
     public void foul() {
