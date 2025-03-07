@@ -122,10 +122,7 @@ public class Family implements HumanCreator {
         int randomNameIndex=r.nextInt(isMale?maleNames.length:femaleNames.length);
         int iq=(father.getIq()+mother.getIq())/2;
         int year=2025;
-        Human child=isMale?new Man(): new Woman();
-        child.setName(isMale?maleNames[randomNameIndex]:femaleNames[randomNameIndex]);
-        child.setSurname(father.getSurname());
-        child.setYear(year);
+        Human child=isMale?new Man(maleNames[randomNameIndex],father.getSurname(),year): new Woman(femaleNames[randomNameIndex],father.getSurname(),year);
         child.setIq(iq);
         child.setFamily(this);
         addChild(child);
