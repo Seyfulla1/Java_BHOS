@@ -15,7 +15,7 @@ public class ComparatorApp {
         Player p10 = new Player("Ibrahim", 150);
         Player p11 = new Player("Jalil", 400);
 
-        Player[] players = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10};
+        Player[] players = {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10,p11};
 
         Checker checker = new Checker();
         Arrays.sort(players, checker);
