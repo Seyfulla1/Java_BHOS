@@ -8,6 +8,6 @@ public class Checker implements Comparator<Player> {
         if(a.getScore() == b.getScore()){
             return a.getName().compareTo(b.getName());
         }
-        return Integer.compare(a.getScore(), b.getScore());
+        return Integer.compare(b.getScore(), a.getScore());
     }
 }
