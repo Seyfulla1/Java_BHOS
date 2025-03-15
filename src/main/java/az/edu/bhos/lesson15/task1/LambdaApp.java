@@ -1,6 +1,15 @@
 package az.edu.bhos.lesson15.task1;
 
 import java.util.Scanner;
+interface IsOdd {
+    boolean isOdd(int num);
+}
+interface IsPalindrome {
+     boolean isPalindrome(int num);
+}
+interface IsPrime {
+     boolean isPrime(int num);
+}
 public class LambdaApp {
     public static void main(String[] args) {
         IsOdd oddCheck=(num)->num%2!=0;
