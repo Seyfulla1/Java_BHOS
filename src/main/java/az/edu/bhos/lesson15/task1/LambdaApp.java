@@ -1,6 +1,5 @@
-package az.edu.bhos.lesson15;
+package az.edu.bhos.lesson15.task1;
 
-import java.awt.*;
 import java.util.Scanner;
 public class LambdaApp {
     public static void main(String[] args) {
