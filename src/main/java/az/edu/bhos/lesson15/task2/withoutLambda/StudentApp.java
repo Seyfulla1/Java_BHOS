@@ -1,4 +1,4 @@
-package az.edu.bhos.lesson15.task2;
+package az.edu.bhos.lesson15.task2.withoutLambda;
 
 
 import java.util.Arrays;

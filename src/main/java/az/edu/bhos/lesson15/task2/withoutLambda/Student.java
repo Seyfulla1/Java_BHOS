@@ -1,4 +1,4 @@
-package az.edu.bhos.lesson15.task2;
+package az.edu.bhos.lesson15.task2.withoutLambda;
 
 public class Student implements Comparable<Student> {
     private final long id;
