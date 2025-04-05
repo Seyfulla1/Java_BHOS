@@ -7,7 +7,7 @@ public class CustomExceptionApp {
     }
     public static void validateGender(String gender) throws NotMaleException{
         if(!gender.equals("male")){
-            throw new NotMaleException();
+            throw new NotMaleException("Gender cannot be anything other than male!!");
         }
     }
 }
