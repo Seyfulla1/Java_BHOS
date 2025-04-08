@@ -8,6 +8,7 @@ public class Student extends Human implements Gradable {
     private int scholarship;
     private int studentID;
     private ArrayList<Course> coursesTaken;
+    private HashMap<Course, Integer> studyTime;
     private HashMap<Exam,Integer> examsTaken;
     public Student(String name, String surname, int age,boolean isMale, int scholarship, int studentID) {
         super(name, surname, age,isMale);
@@ -15,22 +16,43 @@ public class Student extends Human implements Gradable {
         this.studentID = studentID;
         this.coursesTaken = new ArrayList<>();
         this.examsTaken = new HashMap<>();
+        this.studyTime = new HashMap<>();
     }
+
     @Override
     public boolean takeCourse(Course course){
         if (course != null && !coursesTaken.contains(course)) {
             coursesTaken.add(course);
+            studyTime.put(course,0);
             course.registerStudent(this);
             return true;
         }
         return false;
     }
     @Override
+    public void study(Course course, int hours){
+        if (course != null && coursesTaken.contains(course)) {
+            studyTime.putIfAbsent(course,0);
+            studyTime.put(course,studyTime.get(course)+hours);
+        }
+    }
+    @Override
     public int takeExam(Exam exam){
         if (exam != null && coursesTaken.contains(exam.getExamCourse())) {
             Random random = new Random();
-            int minPossibleScore = (exam.getAverageScore()+this.getAverageScore())/2-10;
-
+            int studentAverageScore;
+            int examAverageScore;
+            if(examsTaken.isEmpty()){
+                studentAverageScore=50;
+            }else{
+                studentAverageScore = this.getAverageScore();
+            }
+            if(exam.getStudentsTakingExam().isEmpty()) {
+                examAverageScore = 50;
+            }else{
+                examAverageScore = exam.getAverageScore();
+            }
+            int minPossibleScore = (examAverageScore+studentAverageScore+studyTime.get(exam.getExamCourse()))/2-10;
             int score = random.nextInt(20)+minPossibleScore;
             if (score < 0) {
                 score = 0;
@@ -39,6 +61,7 @@ public class Student extends Human implements Gradable {
             }
             examsTaken.put(exam,score);
             exam.addStudentToExam(this, score);
+            return score;
         }
         return -1;
     }
