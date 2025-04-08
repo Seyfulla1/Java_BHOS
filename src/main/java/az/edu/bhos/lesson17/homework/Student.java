@@ -7,26 +7,27 @@ import java.util.Random;
 public class Student extends Human implements Gradable {
     private double scholarship;
     private int studentID;
-    private ArrayList<Course> coursesTaken;
+    private double gpa;
+    private HashMap<Course,Double> coursesTaken;
     private HashMap<Exam,Integer> examsTaken;
     public Student(String name, String surname, int age, double scholarship, int studentID) {
         super(name, surname, age);
         this.scholarship = scholarship;
         this.studentID = studentID;
-        this.coursesTaken = new ArrayList<>();
+        this.coursesTaken = new HashMap<>();
         this.examsTaken = new HashMap<>();
     }
     @Override
     public boolean takeCourse(Course course){
-        if (course != null && !coursesTaken.contains(course)) {
-            coursesTaken.add(course);
+        if (course != null) {
+            coursesTaken.putIfAbsent(course,0.0);
             return true;
         }
         return false;
     }
     @Override
     public int takeExam(Exam exam){
-        if (exam != null && coursesTaken.contains(exam.getExamCourse())) {
+        if (exam != null && coursesTaken.containsKey(exam.getExamCourse())) {
             Random random = new Random();
             int possibleScore = (exam.getAverageScore()+this.getAverageScore())/2;
             int score = random.nextInt(possibleScore-10, possibleScore+10);
@@ -37,14 +38,18 @@ public class Student extends Human implements Gradable {
     }
     @Override
     public double getGPA(){
-        int totalScore = 0;
-        for (int score : examsTaken.values()) {
-            totalScore += score;
+        double totalScore = 0;
+        int totalCredits=0;
+        for(Course course : coursesTaken.keySet()) {
+            totalCredits+= course.getCredits();
+        }
+        for (Course course : coursesTaken.keySet()) {
+            totalScore += coursesTaken.get(course) * course.getCredits();
         }
         return (double) totalScore / examsTaken.size();
     }
     public boolean dropCourse(Course course){
-        if (course != null && coursesTaken.contains(course)) {
+        if (course != null && coursesTaken.containsKey(course)) {
             coursesTaken.remove(course);
             return true;
         }
