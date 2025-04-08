@@ -1,6 +1,6 @@
 package az.edu.bhos.lesson17.homework;
 
-public class Human {
+public abstract class Human {
     private final String name;
     private final String surname;
     private boolean isMale;
