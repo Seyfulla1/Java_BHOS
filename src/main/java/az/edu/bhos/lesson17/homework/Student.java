@@ -33,7 +33,8 @@ public class Student extends Human implements Gradable {
     public int takeExam(Exam exam){
         if (exam != null && coursesTaken.contains(exam.getExamCourse())) {
             Random random = new Random();
-            int score = random.nextInt(getAverageScore()-10,getAverageScore()+10);
+            int possibleScore = (exam.getAverageScore()+this.getAverageScore())/2;
+            int score = random.nextInt(possibleScore-10, possibleScore+10);
             examsTaken.put(exam,score);
             exam.addStudentToExam(this, score);
         }

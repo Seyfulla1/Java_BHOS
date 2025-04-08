@@ -35,9 +35,18 @@ public String getExamName(){
     public boolean addStudentToExam(Student student, int score){
         if (student != null) {
             studentsTakingExam.putIfAbsent(student,score);
+            return true;
         }
         return false;
     }
+    public int getAverageScore(){
+        int totalScore = 0;
+        for (int score : studentsTakingExam.values()) {
+            totalScore += score;
+        }
+        return totalScore / studentsTakingExam.size();
+    }
+
 
 
 
