@@ -6,22 +6,22 @@ import java.util.HashMap;
 
 public class Exam {
     private Course examCourse;
-    private ExamType examType;
+    private String examName;
     private int examDuration;
     private LocalDateTime examDateTime;
     private HashMap<Student,Integer> studentsTakingExam;
-    public Exam(Course examCourse, ExamType examType) {
+    public Exam(Course examCourse, String examName) {
         this.examCourse = examCourse;
-        this.examType = examType;
-        this.examDuration = -1;
+        this.examName = examName;
+        this.examDuration = 0;
         this.examDateTime=null;
         this.studentsTakingExam = new HashMap<>();
     }
     public Course getExamCourse(){
         return examCourse;
     }
-public ExamType getExamType(){
-        return examType;
+    public String getExamName(){
+        return examName;
     }
     public int getExamDuration(){
         return examDuration;
@@ -45,6 +45,24 @@ public ExamType getExamType(){
             totalScore += score;
         }
         return totalScore / studentsTakingExam.size();
+    }
+    public int getMaxScore(){
+        int maxScore = 0;
+        for (int score : studentsTakingExam.values()) {
+            if (score > maxScore) {
+                maxScore = score;
+            }
+        }
+        return maxScore;
+    }
+    public int getMinScore(){
+        int minScore = 100;
+        for (int score : studentsTakingExam.values()) {
+            if (score < minScore) {
+                minScore = score;
+            }
+        }
+        return minScore;
     }
 
 
