@@ -7,7 +7,7 @@ public class Course {
     private String courseID;
     private int credits;
     private ArrayList<Student> studentsTakingCourse;
-    private ArrayList<Teacher> teacherTeachingCourse;
+    private Teacher teacherTeachingCourse;
     private Exam exam;
 
     public Course(String courseName, String courseID, int credits) {
@@ -15,7 +15,7 @@ public class Course {
         this.courseID = courseID;
         this.credits = credits;
         this.studentsTakingCourse = new ArrayList<>();
-        this.teacherTeachingCourse = new ArrayList<>();
+        this.teacherTeachingCourse =null;
         this.exam =new Exam(this);
     }
     public String getCourseName() {
@@ -47,12 +47,8 @@ public class Course {
         }
         return false;
     }
-    public boolean assignTeacher(Teacher teacher) {
-        if (teacher != null && !teacherTeachingCourse.contains(teacher)) {
-            teacherTeachingCourse.add(teacher);
-            return true;
-        }
-        return false;
+    public void assignTeacher(Teacher teacher) {
+        teacherTeachingCourse=teacher;
     }
     @Override
     public String toString() {
