@@ -6,22 +6,17 @@ import java.util.HashMap;
 
 public class Exam {
     private Course examCourse;
-    private String examName;
     private int examDuration;
     private LocalDateTime examDateTime;
     private HashMap<Student,Integer> studentsTakingExam;
-    public Exam(Course examCourse, String examName) {
+    public Exam(Course examCourse) {
         this.examCourse = examCourse;
-        this.examName = examName;
         this.examDuration = 0;
         this.examDateTime=null;
         this.studentsTakingExam = new HashMap<>();
     }
     public Course getExamCourse(){
         return examCourse;
-    }
-    public String getExamName(){
-        return examName;
     }
     public int getExamDuration(){
         return examDuration;
