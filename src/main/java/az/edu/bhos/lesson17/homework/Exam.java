@@ -24,6 +24,12 @@ public class Exam {
     public String getExamDateTime(){
         return examDateTime.toString();
     }
+    public void setExamDuration(int examDuration){
+        this.examDuration = examDuration;
+    }
+    public void setExamDateTime(LocalDateTime examDateTime){
+        this.examDateTime = examDateTime;
+    }
     public HashMap<Student,Integer> getStudentsTakingExam(){
         return studentsTakingExam;
     }
@@ -59,8 +65,11 @@ public class Exam {
         }
         return minScore;
     }
-
-
-
-
+    @Override
+    public String toString() {
+        return "Exam{" +
+                "examCourse=" + examCourse.getCourseName() +
+                ", examDuration=" + examDuration +
+                ", examDateTime=" + examDateTime+"}";
+    }
 }
