@@ -38,7 +38,15 @@ public class Teacher extends Human implements Teachable {
     }
     @Override
     public boolean assignCourse(Course course){
-        if (course != null && !coursesTaught.contains(course)) {
+        try{
+            if (course == null) {
+                throw new IllegalArgumentException("Course cannot be null.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        if (!coursesTaught.contains(course)) {
             this.coursesTaught.add(course);
             course.assignTeacher(this);
             return true;
@@ -46,6 +54,14 @@ public class Teacher extends Human implements Teachable {
         return false;
     }
     public boolean setExam(Course course, int duration, LocalDateTime examDateTime) {
+        try {
+            if (examDateTime.isBefore(LocalDateTime.now())) {
+                throw new IllegalArgumentException("Exam date and time cannot be in the past.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
         if (course != null && coursesTaught.contains(course)){
             course.getExam().setExamDuration(duration);
             course.getExam().setExamDateTime(examDateTime);

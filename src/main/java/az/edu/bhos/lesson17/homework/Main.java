@@ -1,5 +1,7 @@
 package az.edu.bhos.lesson17.homework;
 
+import java.time.LocalDateTime;
+
 public class Main {
     public static void main(String[] args) {
         Student s1= new Student("Ali", "Aliyev", 17,true,143,230104001);
@@ -39,12 +41,12 @@ public class Main {
         int e2= s1.takeExam(calc2.getExam());
         int e3=s1.takeExam(phy2.getExam());
         int e4= s1.takeExam(hist.getExam());
-        System.out.println("Student 1 GPA: " + s1.getGPA());
-        System.out.println("Student 1 Exam 1 score: " + e1);
-        System.out.println("Student 1 Exam 2 score: " + e2);
-        System.out.println("Student 1 Exam 3 score: " + e3);
-        System.out.println("Student 1 Exam 4 score: " + e4);
-        System.out.println("Student 1 Average score: " + s1.getAverageScore());
+        t1.assignCourse(java);
+        t1.assignCourse(cpp);
+        t2.assignCourse(calc1);
+        t2.assignCourse(calc2);
+        t1.setExam(java,120, LocalDateTime.of(2025,4,5,14,0));
+
 
     }
 }

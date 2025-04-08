@@ -84,26 +84,47 @@ public class Student extends Human implements Gradable {
         for(Course course : coursesTaken) {
             totalCredits+= course.getCredits();
         }
-        for (Exam exam : examsTaken.keySet()) {
-            totalScore += exam.getExamCourse().getCredits()*examsTaken.get(exam)/(double)totalCredits;
+        try {
+            for (Exam exam : examsTaken.keySet()) {
+                totalScore += exam.getExamCourse().getCredits() * examsTaken.get(exam) / (double) totalCredits;
+            }
+        }catch (ArithmeticException e){
+            System.out.println("ArithmeticException: Division by zero. No courses taken.");
         }
         return totalScore;
     }
     public boolean dropCourse(Course course){
-        if (course != null && coursesTaken.contains(course)) {
+        try{
+            if (course == null) {
+                throw new IllegalArgumentException("Course cannot be null.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        if (coursesTaken.contains(course)) {
             coursesTaken.remove(course);
             course.removeStudent(this);
             return true;
         }
         return false;
     }
-    public int getAverageScore(){
+    public int getAverageScore() {
         int totalScore = 0;
-        for (int score : examsTaken.values()) {
-            totalScore += score;
+        try {
+            for (int score : examsTaken.values()) {
+                totalScore += score;
+            }
+            return totalScore / examsTaken.size();
+        } catch (ArithmeticException e) {
+            System.out.println("ArithmeticException: Division by zero. No exams taken.");
+            return 0;
+        } catch (NullPointerException e) {
+            System.out.println("NullPointerException: No exams taken.");
+            return 0;
         }
-        return totalScore / examsTaken.size();
     }
+
     @Override
     public boolean equals(Object that) {
         if(this==that){

@@ -34,14 +34,27 @@ public class Exam {
         return studentsTakingExam;
     }
     public boolean addStudentToExam(Student student, int score){
-        if (student != null) {
-            studentsTakingExam.putIfAbsent(student,score);
+        try {
+            if (student == null || score < 0 || score > 100) {
+                throw new IllegalArgumentException("Invalid student or score");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+            studentsTakingExam.putIfAbsent(student, score);
             return true;
         }
-        return false;
-    }
     public int getAverageScore(){
         int totalScore = 0;
+        try{
+            if (studentsTakingExam.isEmpty()) {
+                throw new ArithmeticException("No students have taken the exam");
+            }
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+            return 0;
+        }
         for (int score : studentsTakingExam.values()) {
             totalScore += score;
         }
@@ -49,6 +62,14 @@ public class Exam {
     }
     public int getMaxScore(){
         int maxScore = 0;
+        try {
+            if (studentsTakingExam.isEmpty()) {
+                throw new ArithmeticException("No students have taken the exam");
+            }
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+            return 0;
+        }
         for (int score : studentsTakingExam.values()) {
             if (score > maxScore) {
                 maxScore = score;
@@ -58,6 +79,14 @@ public class Exam {
     }
     public int getMinScore(){
         int minScore = 100;
+        try {
+            if (studentsTakingExam.isEmpty()) {
+                throw new ArithmeticException("No students have taken the exam");
+            }
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+            return 0;
+        }
         for (int score : studentsTakingExam.values()) {
             if (score < minScore) {
                 minScore = score;

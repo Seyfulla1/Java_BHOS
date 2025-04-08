@@ -41,7 +41,15 @@ public class Course {
         return false;
     }
     public boolean removeStudent(Student student) {
-        if (student != null && studentsTakingCourse.contains(student)) {
+        try {
+            if (student == null) {
+                throw new IllegalArgumentException("Student cannot be null.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        if (studentsTakingCourse.contains(student)) {
             studentsTakingCourse.remove(student);
             return true;
         }
