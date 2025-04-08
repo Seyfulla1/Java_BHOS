@@ -7,12 +7,14 @@ public class Course {
     private String courseID;
     private int credits;
     private ArrayList<Student> studentsTakingCourse;
+    private Exam exam;
 
     public Course(String courseName, String courseID, int credits) {
         this.courseName = courseName;
         this.courseID = courseID;
         this.credits = credits;
         this.studentsTakingCourse = new ArrayList<>();
+        this.exam =new Exam(this);
     }
     public String getCourseName() {
         return courseName;
@@ -25,6 +27,9 @@ public class Course {
     }
     public ArrayList<Student> getStudentsTakingCourse() {
         return studentsTakingCourse;
+    }
+    public Exam getExam() {
+        return exam;
     }
     public boolean registerStudent(Student student) {
         if (student != null && !studentsTakingCourse.contains(student)) {
