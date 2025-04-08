@@ -5,11 +5,13 @@ import java.util.ArrayList;
 public class Teacher extends Human implements Teachable {
     private double salary;
     private final int teacherID;
+    public int experience;
     private ArrayList<Course> coursesTaught;
-    public Teacher(String name, String surname, int age, double salary, int teacherID) {
-        super(name, surname, age);
+    public Teacher(String name, String surname, int age, boolean isMale, double salary, int teacherID) {
+        super(name, surname, age,isMale);
         this.salary = salary;
         this.teacherID = teacherID;
+        this.experience = 0;
         this.coursesTaught = new ArrayList<>();
     }
     public double getSalary() {
@@ -21,9 +23,17 @@ public class Teacher extends Human implements Teachable {
     public int getTeacherID() {
         return teacherID;
     }
+    public int getExperience() {
+        return experience;
+    }
+    public void increaseExperience() {
+        this.experience++;
+    }
+    @Override
     public ArrayList<Course> getCoursesTaught() {
         return coursesTaught;
     }
+    @Override
     public boolean assignCourse(Course course){
         if (course != null && !coursesTaught.contains(course)) {
             this.coursesTaught.add(course);
@@ -31,12 +41,35 @@ public class Teacher extends Human implements Teachable {
         }
         return false;
     }
-    public boolean setExam(Exam exam){
+    public boolean setExamTime(Exam exam){
         if (exam != null && coursesTaught.contains(exam.getExamCourse())) {
-
             return true;
         }
         return false;
+    }
+    @Override
+    public boolean equals(Object that) {
+      if(this==that){
+          return true;
+      }
+      if(!(that instanceof Teacher)){
+            return false;
+      }
+        Teacher thatTeacher = (Teacher) that;
+        return this.teacherID == thatTeacher.teacherID;
+    }
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(teacherID);
+    }
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "salary=" + salary +
+                ", teacherID=" + teacherID +
+                ", experience=" + experience +
+                ", coursesTaught=" + coursesTaught +
+                '}';
     }
 
 

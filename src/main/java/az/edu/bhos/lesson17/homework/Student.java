@@ -5,52 +5,71 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Student extends Human implements Gradable {
-    private double scholarship;
+    private int scholarship;
     private int studentID;
-    private double gpa;
-    private HashMap<Course,Double> coursesTaken;
+    private ArrayList<Course> coursesTaken;
     private HashMap<Exam,Integer> examsTaken;
-    public Student(String name, String surname, int age, double scholarship, int studentID) {
-        super(name, surname, age);
+    public Student(String name, String surname, int age,boolean isMale, int scholarship, int studentID) {
+        super(name, surname, age,isMale);
         this.scholarship = scholarship;
         this.studentID = studentID;
-        this.coursesTaken = new HashMap<>();
+        this.coursesTaken = new ArrayList<>();
         this.examsTaken = new HashMap<>();
     }
     @Override
     public boolean takeCourse(Course course){
-        if (course != null) {
-            coursesTaken.putIfAbsent(course,0.0);
+        if (course != null && !coursesTaken.contains(course)) {
+            coursesTaken.add(course);
+            course.registerStudent(this);
             return true;
         }
         return false;
     }
     @Override
     public int takeExam(Exam exam){
-        if (exam != null && coursesTaken.containsKey(exam.getExamCourse())) {
+        if (exam != null && coursesTaken.contains(exam.getExamCourse())) {
             Random random = new Random();
-            int possibleScore = (exam.getAverageScore()+this.getAverageScore())/2;
-            int score = random.nextInt(possibleScore-10, possibleScore+10);
+            int minPossibleScore = (exam.getAverageScore()+this.getAverageScore())/2-10;
+
+            int score = random.nextInt(20)+minPossibleScore;
+            if (score < 0) {
+                score = 0;
+            } else if (score > 100) {
+                score = 100;
+            }
             examsTaken.put(exam,score);
             exam.addStudentToExam(this, score);
         }
         return -1;
     }
+    public int getScholarship() {
+        return scholarship;
+    }
+    public int getStudentID() {
+        return studentID;
+    }
+    public ArrayList<Course> getCoursesTaken() {
+        return coursesTaken;
+    }
+    public HashMap<Exam, Integer> getExamsTaken() {
+        return examsTaken;
+    }
     @Override
     public double getGPA(){
         double totalScore = 0;
         int totalCredits=0;
-        for(Course course : coursesTaken.keySet()) {
+        for(Course course : coursesTaken) {
             totalCredits+= course.getCredits();
         }
-        for (Course course : coursesTaken.keySet()) {
-            totalScore += coursesTaken.get(course) * course.getCredits();
+        for (Exam exam : examsTaken.keySet()) {
+            totalScore += exam.getExamCourse().getCredits()*examsTaken.get(exam)/(double)totalCredits;
         }
-        return (double) totalScore / examsTaken.size();
+        return totalScore;
     }
     public boolean dropCourse(Course course){
-        if (course != null && coursesTaken.containsKey(course)) {
+        if (course != null && coursesTaken.contains(course)) {
             coursesTaken.remove(course);
+            course.removeStudent(this);
             return true;
         }
         return false;
@@ -62,5 +81,28 @@ public class Student extends Human implements Gradable {
         }
         return totalScore / examsTaken.size();
     }
-
+    @Override
+    public boolean equals(Object that) {
+        if(this==that){
+            return true;
+        }
+        if(!(that instanceof Student)){
+            return false;
+        }
+        Student thatStudent = (Student) that;
+        return this.studentID == thatStudent.studentID;
+    }
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(studentID);
+    }
+    @Override
+    public String toString() {
+        return "Student{" +
+                "scholarship=" + scholarship +
+                ", studentID=" + studentID +
+                ", coursesTaken=" + coursesTaken +
+                ", examsTaken=" + examsTaken +
+                '}';
+    }
 }
