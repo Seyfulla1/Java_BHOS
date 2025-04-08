@@ -9,7 +9,7 @@ public class Exam {
     private String examName;
     private int examDuration;
     private LocalDateTime examDateTime;
-    private HashMap<Student,Double> studentsTakingExam;
+    private HashMap<Student,Integer> studentsTakingExam;
     public Exam(Course examCourse, String examName, int examDuration, LocalDateTime examDateTime) {
         this.examCourse = examCourse;
         this.examName = examName;
@@ -17,5 +17,28 @@ public class Exam {
         this.examDateTime = examDateTime;
         this.studentsTakingExam = new HashMap<>();
     }
+    public Course getExamCourse(){
+        return examCourse;
+    }
+public String getExamName(){
+        return examName;
+    }
+    public int getExamDuration(){
+        return examDuration;
+    }
+    public String getExamDateTime(){
+        return examDateTime.toString();
+    }
+    public HashMap<Student,Integer> getStudentsTakingExam(){
+        return studentsTakingExam;
+    }
+    public boolean addStudentToExam(Student student, int score){
+        if (student != null) {
+            studentsTakingExam.putIfAbsent(student,score);
+        }
+        return false;
+    }
+
+
 
 }
