@@ -16,6 +16,7 @@ public class Student extends Human implements Gradable {
         this.coursesTaken = new ArrayList<>();
         this.examsTaken = new HashMap<>();
     }
+    @Override
     public boolean takeCourse(Course course){
         if (course != null && !coursesTaken.contains(course)) {
             coursesTaken.add(course);
@@ -23,13 +24,7 @@ public class Student extends Human implements Gradable {
         }
         return false;
     }
-    public boolean dropCourse(Course course){
-        if (course != null && coursesTaken.contains(course)) {
-            coursesTaken.remove(course);
-            return true;
-        }
-        return false;
-    }
+    @Override
     public int takeExam(Exam exam){
         if (exam != null && coursesTaken.contains(exam.getExamCourse())) {
             Random random = new Random();
@@ -39,6 +34,21 @@ public class Student extends Human implements Gradable {
             exam.addStudentToExam(this, score);
         }
         return -1;
+    }
+    @Override
+    public double getGPA(){
+        int totalScore = 0;
+        for (int score : examsTaken.values()) {
+            totalScore += score;
+        }
+        return (double) totalScore / examsTaken.size();
+    }
+    public boolean dropCourse(Course course){
+        if (course != null && coursesTaken.contains(course)) {
+            coursesTaken.remove(course);
+            return true;
+        }
+        return false;
     }
     public int getAverageScore(){
         int totalScore = 0;
