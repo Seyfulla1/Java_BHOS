@@ -1,5 +1,8 @@
 package az.edu.bhos.lesson17.homework;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Teacher extends Human implements Teachable {
@@ -37,12 +40,16 @@ public class Teacher extends Human implements Teachable {
     public boolean assignCourse(Course course){
         if (course != null && !coursesTaught.contains(course)) {
             this.coursesTaught.add(course);
+            course.assignTeacher(this);
             return true;
         }
         return false;
     }
-    public boolean setExamTime(Exam exam){
-        if (exam != null && coursesTaught.contains(exam.getExamCourse())) {
+    public boolean setExam(Course course, int duration, LocalDateTime examDateTime) {
+        if (course != null && coursesTaught.contains(course)){
+            course.getExam().setExamDuration(duration);
+            course.getExam().setExamDateTime(examDateTime);
+
             return true;
         }
         return false;
