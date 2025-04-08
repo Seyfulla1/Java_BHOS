@@ -1,5 +1,7 @@
 package az.edu.bhos.lesson17.homework;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -17,24 +19,27 @@ public class Teacher extends Human implements Teachable {
         this.experience = 0;
         this.coursesTaught = new ArrayList<>();
     }
+    @JsonProperty("salary")
     public double getSalary() {
         return salary;
+    }
+    @JsonProperty("ID")
+    public int getTeacherID() {
+        return teacherID;
+    }
+    @JsonProperty("experience")
+    public int getExperience() {
+        return experience;
+    }
+    @JsonProperty("coursesTaught")
+    public ArrayList<Course> getCoursesTaught() {
+        return coursesTaught;
     }
     public void setSalary(double salary) {
         this.salary = salary;
     }
-    public int getTeacherID() {
-        return teacherID;
-    }
-    public int getExperience() {
-        return experience;
-    }
     public void increaseExperience() {
         this.experience++;
-    }
-    @Override
-    public ArrayList<Course> getCoursesTaught() {
-        return coursesTaught;
     }
     @Override
     public boolean assignCourse(Course course){

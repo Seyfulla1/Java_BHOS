@@ -1,5 +1,8 @@
 package az.edu.bhos.lesson17.homework;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.ArrayList;
 
 public class Course {
@@ -8,6 +11,7 @@ public class Course {
     private int credits;
     private ArrayList<Student> studentsTakingCourse;
     private Teacher teacherTeachingCourse;
+    @JsonIgnore
     private Exam exam;
 
     public Course(String courseName, String courseID, int credits) {
@@ -15,7 +19,7 @@ public class Course {
         this.courseID = courseID;
         this.credits = credits;
         this.studentsTakingCourse = new ArrayList<>();
-        this.teacherTeachingCourse =null;
+        this.teacherTeachingCourse =new Teacher("n/a","n/a",0,false,0,0);
         this.exam =new Exam(this);
     }
     public String getCourseName() {
@@ -26,9 +30,6 @@ public class Course {
     }
     public int getCredits() {
         return credits;
-    }
-    public ArrayList<Student> getStudentsTakingCourse() {
-        return studentsTakingCourse;
     }
     public Exam getExam() {
         return exam;

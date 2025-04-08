@@ -4,5 +4,4 @@ import java.util.ArrayList;
 
 public interface Teachable {
     boolean assignCourse(Course course);
-    ArrayList<Course> getCoursesTaught();
 }

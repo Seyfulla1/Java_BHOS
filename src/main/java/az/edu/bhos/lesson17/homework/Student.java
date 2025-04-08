@@ -1,5 +1,8 @@
 package az.edu.bhos.lesson17.homework;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -7,6 +10,7 @@ import java.util.Random;
 public class Student extends Human implements Gradable {
     private int scholarship;
     private int studentID;
+    private double gpa;
     private ArrayList<Course> coursesTaken;
     private HashMap<Course, Integer> studyTime;
     private HashMap<Exam,Integer> examsTaken;
@@ -19,6 +23,26 @@ public class Student extends Human implements Gradable {
         this.studyTime = new HashMap<>();
     }
 
+    @JsonProperty("scholarship")
+    public int getScholarship() {
+        return scholarship;
+    }
+    @JsonProperty("studentID")
+    public int getStudentID() {
+        return studentID;
+    }
+    @JsonProperty("gpa")
+    public double getGpa() {
+        return gpa;
+    }
+    @JsonProperty("coursesTaken")
+    public ArrayList<Course> getCoursesTaken() {
+        return coursesTaken;
+    }
+    @JsonIgnore
+    public HashMap<Exam, Integer> getExamsTaken() {
+        return examsTaken;
+    }
     @Override
     public boolean takeCourse(Course course){
         if (course != null && !coursesTaken.contains(course)) {
@@ -36,6 +60,7 @@ public class Student extends Human implements Gradable {
             studyTime.put(course,studyTime.get(course)+hours);
         }
     }
+
     @Override
     public int takeExam(Exam exam){
         if (exam != null && coursesTaken.contains(exam.getExamCourse())) {
@@ -45,12 +70,12 @@ public class Student extends Human implements Gradable {
             if(examsTaken.isEmpty()){
                 studentAverageScore=50;
             }else{
-                studentAverageScore = this.getAverageScore();
+                studentAverageScore = this.findAverageScore();
             }
             if(exam.getStudentsTakingExam().isEmpty()) {
                 examAverageScore = 50;
             }else{
-                examAverageScore = exam.getAverageScore();
+                examAverageScore = exam.findAverageScore();
             }
             int minPossibleScore = (examAverageScore+studentAverageScore+studyTime.get(exam.getExamCourse()))/2-10;
             int score = random.nextInt(20)+minPossibleScore;
@@ -65,20 +90,10 @@ public class Student extends Human implements Gradable {
         }
         return -1;
     }
-    public int getScholarship() {
-        return scholarship;
-    }
-    public int getStudentID() {
-        return studentID;
-    }
-    public ArrayList<Course> getCoursesTaken() {
-        return coursesTaken;
-    }
-    public HashMap<Exam, Integer> getExamsTaken() {
-        return examsTaken;
-    }
+
+
     @Override
-    public double getGPA(){
+    public void findGPA(){
         double totalScore = 0;
         int totalCredits=0;
         for(Course course : coursesTaken) {
@@ -91,7 +106,7 @@ public class Student extends Human implements Gradable {
         }catch (ArithmeticException e){
             System.out.println("ArithmeticException: Division by zero. No courses taken.");
         }
-        return totalScore;
+        gpa=totalScore;
     }
     public boolean dropCourse(Course course){
         try{
@@ -109,7 +124,7 @@ public class Student extends Human implements Gradable {
         }
         return false;
     }
-    public int getAverageScore() {
+    public int findAverageScore() {
         int totalScore = 0;
         try {
             for (int score : examsTaken.values()) {

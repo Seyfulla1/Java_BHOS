@@ -1,22 +1,31 @@
 package az.edu.bhos.lesson17.homework;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Exam {
+
     private Course examCourse;
+
     private int examDuration;
     private LocalDateTime examDateTime;
     private HashMap<Student,Integer> studentsTakingExam;
     public Exam(Course examCourse) {
         this.examCourse = examCourse;
         this.examDuration = 0;
-        this.examDateTime=null;
+        this.examDateTime= LocalDateTime.of(2100,1,1,0,0);
         this.studentsTakingExam = new HashMap<>();
     }
+    @JsonIgnore
     public Course getExamCourse(){
         return examCourse;
+    }
+    public String getExamCourseName(){
+        return examCourse.getCourseName();
     }
     public int getExamDuration(){
         return examDuration;
@@ -30,6 +39,7 @@ public class Exam {
     public void setExamDateTime(LocalDateTime examDateTime){
         this.examDateTime = examDateTime;
     }
+    @JsonIgnore
     public HashMap<Student,Integer> getStudentsTakingExam(){
         return studentsTakingExam;
     }
@@ -45,7 +55,7 @@ public class Exam {
             studentsTakingExam.putIfAbsent(student, score);
             return true;
         }
-    public int getAverageScore(){
+    public int findAverageScore(){
         int totalScore = 0;
         try{
             if (studentsTakingExam.isEmpty()) {
@@ -60,7 +70,7 @@ public class Exam {
         }
         return totalScore / studentsTakingExam.size();
     }
-    public int getMaxScore(){
+    public int findMaxScore(){
         int maxScore = 0;
         try {
             if (studentsTakingExam.isEmpty()) {
@@ -77,7 +87,7 @@ public class Exam {
         }
         return maxScore;
     }
-    public int getMinScore(){
+    public int findMinScore(){
         int minScore = 100;
         try {
             if (studentsTakingExam.isEmpty()) {
