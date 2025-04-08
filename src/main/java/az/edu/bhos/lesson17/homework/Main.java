@@ -34,14 +34,17 @@ public class Main {
         s5.takeCourse(phy2);
         s5.takeCourse(geo);
         s5.takeCourse(civilDef);
-        System.out.println("Students taking Java course: ");
-        for (Student student : java.getStudentsTakingCourse()) {
-            System.out.println(student.getName() + " " + student.getSurname());
-        }
-        System.out.println("Courses taken by " + s1.getName() + " " + s1.getSurname() + ": ");
-        for (Course course : s1.getCoursesTaken()) {
-            System.out.println(course.getCourseName());
-        }
+        s1.study(java,40);
+        int e1= s1.takeExam(java.getExam());
+        int e2= s1.takeExam(calc2.getExam());
+        int e3=s1.takeExam(phy2.getExam());
+        int e4= s1.takeExam(hist.getExam());
+        System.out.println("Student 1 GPA: " + s1.getGPA());
+        System.out.println("Student 1 Exam 1 score: " + e1);
+        System.out.println("Student 1 Exam 2 score: " + e2);
+        System.out.println("Student 1 Exam 3 score: " + e3);
+        System.out.println("Student 1 Exam 4 score: " + e4);
+        System.out.println("Student 1 Average score: " + s1.getAverageScore());
 
     }
 }
